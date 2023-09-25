@@ -1,3 +1,4 @@
+
 from selenium import webdriver
 
 class BaseSetup:
@@ -14,8 +15,3 @@ class BaseSetup:
         driver.get("https://petstore.octoperf.com/actions/Catalog.action")
         driver.maximize_window()
         return driver
-
-
-'''more:
-Screenshot capabilities:For capturing screenshots automatically when a test fails.
-'''
