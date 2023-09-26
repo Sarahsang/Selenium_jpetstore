@@ -1,17 +1,9 @@
-import pytest
 from PO.Home_page import HomePage
 from PO.FishCategoryPage import FishCategoryPage
 from PO.ProductListPage import ProductListPage
 from PO.ProductDetailPage import ProductDetailPage
 from PO.ShoppingCartPage import ShoppingCartPage
-from BaseSetup import BaseSetup 
 
-@pytest.fixture(scope="module")
-def setup():
-    driver = BaseSetup.initialize_driver()  #use BaseSetup for WebDriver
-    driver.implicitly_wait(10)
-    yield driver
-    driver.quit()
 
 def test_add_to_cart(setup):
     driver = setup
