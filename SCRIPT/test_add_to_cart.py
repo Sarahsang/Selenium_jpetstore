@@ -1,14 +1,14 @@
 import pytest
-from selenium import webdriver
-from Home_page import HomePage
-from FishCategoryPage import FishCategoryPage
-from ProductListPage import ProductListPage
-from ProductDetailPage import ProductDetailPage
-from ShoppingCartPage import ShoppingCartPage
+from PO.Home_page import HomePage
+from PO.FishCategoryPage import FishCategoryPage
+from PO.ProductListPage import ProductListPage
+from PO.ProductDetailPage import ProductDetailPage
+from PO.ShoppingCartPage import ShoppingCartPage
+from BaseSetup import BaseSetup 
 
 @pytest.fixture(scope="module")
 def setup():
-    driver = webdriver.Chrome()
+    driver = BaseSetup.initialize_driver()  #use BaseSetup for WebDriver
     driver.implicitly_wait(10)
     yield driver
     driver.quit()
