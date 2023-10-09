@@ -1,5 +1,5 @@
 import pytest
-from BaseSetup import BaseSetup  # import BaseSetup
+from Base.base import BaseSetup  # import BaseSetup
 
 @pytest.fixture(scope="module")
 def setup():

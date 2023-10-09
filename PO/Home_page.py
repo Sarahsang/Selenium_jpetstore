@@ -6,10 +6,13 @@ class HomePage:
         self.driver = driver
 
         # Define locators for elements on the home page
+        self.sign_in_link = (By.LINK_TEXT, "Sign In")
         self.sign_out_link = (By.LINK_TEXT, "Sign Out")
+        self.login_button = (By.NAME, "signon")
         self.my_account_link = (By.LINK_TEXT, "My Account")
         self.search_box = (By.NAME, "keyword")
-        self.search_button = (By.VALUE, "Search")
+        self.search_button = (By.NAME, "searchProducts")
+
 
         # Categories
         self.fish_category = (By.XPATH, "//a[@href='/actions/Catalog.action?viewCategory=&categoryId=FISH']")
@@ -18,8 +21,14 @@ class HomePage:
         self.reptiles_category = (By.XPATH, "//a[@href='/actions/Catalog.action?viewCategory=&categoryId=REPTILES']")
         self.birds_category = (By.XPATH, "//a[@href='/actions/Catalog.action?viewCategory=&categoryId=BIRDS']")
 
+    def click_sign_in(self):
+        self.driver.find_element(*self.sign_in_link).click()
+    
     def click_sign_out(self):
         self.driver.find_element(*self.sign_out_link).click()
+        
+    def click_login_button(self):
+        self.driver.find_element(*self.login_button).click()
 
     def click_my_account(self):
         self.driver.find_element(*self.my_account_link).click()
@@ -42,3 +51,6 @@ class HomePage:
 
     def click_birds_category(self):
         self.driver.find_element(*self.birds_category).click()
+
+    def navigate_to_home_page(self):
+        pass
