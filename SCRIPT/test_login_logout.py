@@ -1,6 +1,5 @@
-
-from ..PO.Home_page import HomePage
-from ..Data.data import USERNAME, PASSWORD
+from PO.Home_page import HomePage
+from Data.data import USERNAME, PASSWORD
 
 
 class TestLoginLogout:
