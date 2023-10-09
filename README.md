@@ -3,4 +3,4 @@
 - data
 - PO
 - resource
-- TestScript
+- TestScript(parallel running by default)
