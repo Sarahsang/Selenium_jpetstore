@@ -22,3 +22,10 @@ class FishCategoryPage:
 
     def get_product_names(self):
         return [element.text for element in self.driver.find_elements(*self.product_names)]
+
+    def is_at_fish_category(self):
+            try:
+                self.driver.find_element(By.XPATH, "//h2[text()='Fish']")
+                return True
+            except:
+                return False

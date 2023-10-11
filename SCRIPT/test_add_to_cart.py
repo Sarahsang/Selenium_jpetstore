@@ -5,7 +5,7 @@ from PO.ProductDetailPage import ProductDetailPage
 from PO.ShoppingCartPage import ShoppingCartPage
 
 
-def test_add_to_cart(setup):
+def test_add_to_cart(setup, login):  # login fixture
     driver = setup
     home_page = HomePage(driver)
     fish_category_page = FishCategoryPage(driver)
@@ -13,20 +13,19 @@ def test_add_to_cart(setup):
     product_detail_page = ProductDetailPage(driver)
     shopping_cart_page = ShoppingCartPage(driver)
 
+
     # Navigate to home page
     home_page.navigate_to_home_page()
 
     # Navigate to Fish Category
     home_page.click_fish_category()
-    assert fish_category_page.is_title_matches()
+    assert fish_category_page.is_at_fish_category()
+    
+    # Click on the product
 
-    # Click on the first product
-    fish_category_page.click_first_product()
-    assert product_list_page.is_title_matches()
+    fish_category_page.click_product_by_name("Angelfish")
+    assert product_list_page.is_at_product_list_for("Angelfish"), "Not at the Product List Page for Angelfish"
 
-    # Navigate to Product Details
-    product_list_page.click_first_item()
-    assert product_detail_page.is_title_matches()
 
     # Add item to cart
     product_detail_page.add_to_cart()

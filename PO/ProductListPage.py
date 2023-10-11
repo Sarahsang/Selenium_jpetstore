@@ -26,3 +26,10 @@ class ProductListPage:
             if element.text == item_id:
                 self.driver.find_elements(*self.add_to_cart_buttons)[index].click()
                 return
+
+    def is_at_product_list_for(self, product_name):
+        try:
+            self.driver.find_element(By.XPATH, f"//h2[text()='{product_name}']")
+            return True
+        except:
+            return False
