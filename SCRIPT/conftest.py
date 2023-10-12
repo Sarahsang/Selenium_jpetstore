@@ -24,7 +24,9 @@ def login(setup):
     username_field = WebDriverWait(setup, 10).until(
         EC.presence_of_element_located((By.NAME, "username"))
     )
+    print("Filling username")  # Debugging line
     username_field.send_keys(USERNAME)
+    print("Filled username")  # Debugging line
 
     password_field = setup.find_element(By.NAME, "password")
     password_field.send_keys(PASSWORD)

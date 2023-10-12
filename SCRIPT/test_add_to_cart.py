@@ -28,8 +28,9 @@ def test_add_to_cart(setup, login):  # login fixture
 
 
     # Add item to cart
-    product_detail_page.add_to_cart()
-    assert shopping_cart_page.is_title_matches()
+    product_detail_page.click_add_to_cart_by_item_id("EST-1")
+    assert shopping_cart_page.is_at_shopping_cart_page(), "Not at the Shopping Cart Page"
+
 
     # Verify item added to cart
-    assert shopping_cart_page.is_item_added()
+    assert shopping_cart_page.is_item_added("EST-1")

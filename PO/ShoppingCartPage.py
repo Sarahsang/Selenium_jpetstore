@@ -10,7 +10,6 @@ class ShoppingCartPage:
         self.proceed_to_checkout_button = (By.LINK_TEXT, "Proceed to Checkout")
         self.remove_item_button = (By.LINK_TEXT, "Remove")
         self.update_cart_button = (By.NAME, "updateCartQuantities")
-        self.quantity_input = (By.NAME, "EST-1")
 
     def click_return_to_main_menu(self):
         self.driver.find_element(*self.return_to_main_menu_link).click()
@@ -24,6 +23,28 @@ class ShoppingCartPage:
     def click_update_cart(self):
         self.driver.find_element(*self.update_cart_button).click()
 
-    def set_quantity(self, quantity):
-        self.driver.find_element(*self.quantity_input).clear()
-        self.driver.find_element(*self.quantity_input).send_keys(quantity)
+    def set_quantity(self, item_id, quantity):
+        quantity_input = (By.NAME, item_id)
+        self.driver.find_element(*quantity_input).clear()
+        self.driver.find_element(*quantity_input).send_keys(quantity)
+
+    def is_cart_empty(self):
+        try:
+            self.driver.find_element(By.XPATH, "//td[contains(text(), 'Your cart is empty.')]")
+            return True
+        except:
+            return False
+
+    def is_item_added(self, item_id):
+        item_elements = self.driver.find_elements(By.XPATH, "//table//tr//td[1]")
+        for item_element in item_elements:
+            if item_element.text == item_id:
+                return True
+        return False
+
+    def is_at_shopping_cart_page(self):
+        try:
+            self.driver.find_element(By.XPATH, "//h2[text()='Shopping Cart']")
+            return True
+        except:
+            return False

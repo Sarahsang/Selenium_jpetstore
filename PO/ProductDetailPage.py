@@ -12,5 +12,11 @@ class ProductDetailPage:
     def click_return_to_product(self):
         self.driver.find_element(*self.return_to_product_link).click()
 
-    def click_add_to_cart(self):
-        self.driver.find_element(*self.add_to_cart_button).click()
+    def click_add_to_cart_by_item_id(self, item_id):
+        item_elements = self.driver.find_elements(By.XPATH, "//table//tr//td[1]")
+        add_to_cart_buttons = self.driver.find_elements(By.XPATH, "//table//tr//td[5]/a")
+        
+        for index, item_element in enumerate(item_elements):
+            if item_element.text == item_id:
+                add_to_cart_buttons[index].click()
+                return
