@@ -1,3 +1,7 @@
+import sys
+sys.path.append(r'c:\Users\s1013\OneDrive\Desktop\Lincoln\693\Project\Selenium_learning')
+
+
 from PO.Home_page import HomePage
 from PO.FishCategoryPage import FishCategoryPage
 from PO.ProductListPage import ProductListPage

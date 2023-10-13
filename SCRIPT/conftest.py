@@ -1,9 +1,11 @@
+
 import pytest
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 from Data.data import USERNAME, PASSWORD
-from Base.base import BaseSetup  # import BaseSetup if not already imported
+from Base.base import BaseSetup
 
 @pytest.fixture(scope="module")
 def setup():
@@ -20,20 +22,27 @@ def login(setup):
     )
     login_button.click()
 
-    # Input username and password
+    # Input username using ActionChains
     username_field = WebDriverWait(setup, 10).until(
         EC.presence_of_element_located((By.NAME, "username"))
     )
-    print("Filling username")  # Debugging line
-    username_field.send_keys(USERNAME)
-    print("Filled username")  # Debugging line
+    actions = ActionChains(setup)
+    actions.move_to_element(username_field).click().send_keys(USERNAME).perform()
 
-    password_field = setup.find_element(By.NAME, "password")
-    password_field.send_keys(PASSWORD)
+    # Input password using ActionChains
+    password_field = WebDriverWait(setup, 10).until(
+        EC.presence_of_element_located((By.NAME, "password"))
+    )
+    password_field.clear()
+    actions = ActionChains(setup)
+    actions.move_to_element(password_field).click().send_keys(PASSWORD).perform()
 
     # Click login
-    login_submit = setup.find_element(By.NAME, "signon")
+    login_submit = WebDriverWait(setup, 10).until(
+        EC.presence_of_element_located((By.NAME, "signon"))
+    )
     login_submit.click()
+
     yield
     # Logout
     logout_button = WebDriverWait(setup, 10).until(
