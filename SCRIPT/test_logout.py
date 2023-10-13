@@ -4,7 +4,7 @@ from Data.data import USERNAME, PASSWORD
 
 class TestLogout:
 
-    def test_logout(self, setup):
+    def test_logout(self, login, setup):  # login first
         driver = setup
         home = HomePage(driver)
         
@@ -13,3 +13,4 @@ class TestLogout:
         
         # Verify if logged out successfully
         assert home.is_sign_in_displayed()
+        
