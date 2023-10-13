@@ -38,36 +38,6 @@ class TestShoppingCart:
         # Verify item added to cart
         assert shopping_cart_page.is_item_added("EST-1")
 
-    def test_remove_from_cart(self, setup, login):
-        driver = setup
-        home_page = HomePage(driver)
-        fish_category_page = FishCategoryPage(driver)
-        product_list_page = ProductListPage(driver)
-        product_detail_page = ProductDetailPage(driver)
-        shopping_cart_page = ShoppingCartPage(driver)
-
-        # Navigate to home page
-        home_page.navigate_to_home_page()
-
-        # Navigate to Fish Category
-        home_page.click_fish_category()
-        assert fish_category_page.is_at_fish_category()
-
-        # Click on the product
-        fish_category_page.click_product_by_name("Angelfish")
-        assert product_list_page.is_at_product_list_for("Angelfish"), "Not at the Product List Page for Angelfish"
-
-        # Add item to cart
-        product_detail_page.click_add_to_cart_by_item_id("EST-1")
-        assert shopping_cart_page.is_at_shopping_cart_page(), "Not at the Shopping Cart Page"
-
-        # Verify item added to cart
-        assert shopping_cart_page.is_item_added("EST-1")
-
-        # Remove item from cart
-        shopping_cart_page.click_remove_item_by_id("EST-1")
-        assert shopping_cart_page.is_item_removed("EST-1")
-    
     def test_modify_cart_quantity(self, setup, login):
         driver = setup
         home_page = HomePage(driver)
@@ -99,3 +69,34 @@ class TestShoppingCart:
 
         # Verify the cart is updated
         assert shopping_cart_page.is_quantity_updated("EST-1", "2")
+
+    def test_remove_from_cart(self, setup, login):
+        driver = setup
+        home_page = HomePage(driver)
+        fish_category_page = FishCategoryPage(driver)
+        product_list_page = ProductListPage(driver)
+        product_detail_page = ProductDetailPage(driver)
+        shopping_cart_page = ShoppingCartPage(driver)
+
+        # Navigate to home page
+        home_page.navigate_to_home_page()
+
+        # Navigate to Fish Category
+        home_page.click_fish_category()
+        assert fish_category_page.is_at_fish_category()
+
+        # Click on the product
+        fish_category_page.click_product_by_name("Angelfish")
+        assert product_list_page.is_at_product_list_for("Angelfish"), "Not at the Product List Page for Angelfish"
+
+        # Add item to cart
+        product_detail_page.click_add_to_cart_by_item_id("EST-1")
+        assert shopping_cart_page.is_at_shopping_cart_page(), "Not at the Shopping Cart Page"
+
+        # Verify item added to cart
+        assert shopping_cart_page.is_item_added("EST-1")
+
+        # Remove item from cart
+        shopping_cart_page.click_remove_item_by_id("EST-1")
+        assert shopping_cart_page.is_item_removed("EST-1")
+    

@@ -48,3 +48,26 @@ class ShoppingCartPage:
             return True
         except:
             return False
+
+    def click_remove_item_by_id(self, item_id):
+        remove_button = self.driver.find_element(By.XPATH, f"//td[text()='{item_id}']/following-sibling::td/a[contains(text(),'Remove')]")
+        remove_button.click()
+        
+            
+    def is_item_removed(self, item_id):
+        try:
+            # Try to find the item
+            self.driver.find_element(By.XPATH, f"//td[text()='{item_id}']")
+            return False  # If found, the item is not removed
+        except:
+            return True  # If not found, the item is removed
+        
+    def update_quantity_by_id(self, item_id, quantity):
+        quantity_field = self.driver.find_element(By.NAME, item_id)
+        quantity_field.clear()
+        quantity_field.send_keys(quantity)
+        self.click_update_cart()
+        
+    def is_quantity_updated(self, item_id, quantity):
+        quantity_field = self.driver.find_element(By.NAME, item_id)
+        return quantity_field.get_attribute("value") == quantity
