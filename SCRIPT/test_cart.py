@@ -8,7 +8,7 @@ from PO.ProductDetailPage import ProductDetailPage
 from PO.ShoppingCartPage import ShoppingCartPage
 
 class TestShoppingCart:
-    def test_add_to_cart(setup, login):  # login fixture
+    def test_add_to_cart(self, setup, login):  # login fixture
         driver = setup
         home_page = HomePage(driver)
         fish_category_page = FishCategoryPage(driver)
@@ -99,4 +99,4 @@ class TestShoppingCart:
         # Remove item from cart
         shopping_cart_page.click_remove_item_by_id("EST-1")
         assert shopping_cart_page.is_item_removed("EST-1")
-    
+        

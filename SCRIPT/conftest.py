@@ -43,9 +43,9 @@ def login(setup):
     )
     login_submit.click()
 
-    yield
-    # Logout
-    logout_button = WebDriverWait(setup, 10).until(
-        EC.element_to_be_clickable((By.LINK_TEXT, "Sign Out"))
-    )
-    logout_button.click()
+    # yield
+    # # Logout
+    # logout_button = WebDriverWait(setup, 10).until(
+    #     EC.element_to_be_clickable((By.LINK_TEXT, "Sign Out"))
+    # )
+    # logout_button.click()

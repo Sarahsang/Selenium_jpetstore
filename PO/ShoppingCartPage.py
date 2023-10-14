@@ -50,7 +50,7 @@ class ShoppingCartPage:
             return False
 
     def click_remove_item_by_id(self, item_id):
-        remove_button = self.driver.find_element(By.XPATH, f"//td[text()='{item_id}']/following-sibling::td/a[contains(text(),'Remove')]")
+        remove_button = self.driver.find_element(By.XPATH, f"//td/a[contains(@href, 'workingItemId={item_id}')]") #a tag with href containing workingItemId
         remove_button.click()
         
             

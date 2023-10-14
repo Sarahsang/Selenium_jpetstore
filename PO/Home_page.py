@@ -53,4 +53,11 @@ class HomePage:
         self.driver.find_element(*self.birds_category).click()
 
     def navigate_to_home_page(self):
-        pass
+        self.driver.get("https://petstore.octoperf.com/actions/Catalog.action")
+        
+    def is_sign_in_displayed(self):
+        try:
+            self.driver.find_element(*self.sign_in_link)
+            return True
+        except:
+            return False
