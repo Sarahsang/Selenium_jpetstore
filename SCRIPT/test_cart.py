@@ -9,34 +9,44 @@ from PO.ShoppingCartPage import ShoppingCartPage
 
 class TestShoppingCart:
     def test_add_to_cart(self, setup, login):  # login fixture
-        driver = setup
-        home_page = HomePage(driver)
-        fish_category_page = FishCategoryPage(driver)
-        product_list_page = ProductListPage(driver)
-        product_detail_page = ProductDetailPage(driver)
-        shopping_cart_page = ShoppingCartPage(driver)
+        """
+        Test case for adding an item to the shopping cart.
+
+        Raises:
+            AssertionError: If the test case fails.
+        """
+        try:
+            driver = setup
+            home_page = HomePage(driver)
+            fish_category_page = FishCategoryPage(driver)
+            product_list_page = ProductListPage(driver)
+            product_detail_page = ProductDetailPage(driver)
+            shopping_cart_page = ShoppingCartPage(driver)
 
 
-        # Navigate to home page
-        home_page.navigate_to_home_page()
+            # Navigate to home page
+            home_page.navigate_to_home_page()
 
-        # Navigate to Fish Category
-        home_page.click_fish_category()
-        assert fish_category_page.is_at_fish_category()
-        
-        # Click on the product
+            # Navigate to Fish Category
+            home_page.click_fish_category()
+            assert fish_category_page.is_at_fish_category()
+            
+            # Click on the product
 
-        fish_category_page.click_product_by_name("Angelfish")
-        assert product_list_page.is_at_product_list_for("Angelfish"), "Not at the Product List Page for Angelfish"
-
-
-        # Add item to cart
-        product_detail_page.click_add_to_cart_by_item_id("EST-1")
-        assert shopping_cart_page.is_at_shopping_cart_page(), "Not at the Shopping Cart Page"
+            fish_category_page.click_product_by_name("Angelfish")
+            assert product_list_page.is_at_product_list_for("Angelfish"), "Not at the Product List Page for Angelfish"
 
 
-        # Verify item added to cart
-        assert shopping_cart_page.is_item_added("EST-1")
+            # Add item to cart
+            product_detail_page.click_add_to_cart_by_item_id("EST-1")
+            assert shopping_cart_page.is_at_shopping_cart_page(), "Not at the Shopping Cart Page"
+
+
+            # Verify item added to cart
+            assert shopping_cart_page.is_item_added("EST-1")
+        except Exception as e:
+            print(f"Exception occurred during test: {e}")
+            raise
 
     def test_modify_cart_quantity(self, setup, login):
         driver = setup

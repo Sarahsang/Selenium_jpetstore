@@ -55,9 +55,28 @@ class HomePage:
     def navigate_to_home_page(self):
         self.driver.get("https://petstore.octoperf.com/actions/Catalog.action")
         
-    def is_sign_in_displayed(self):
+    def click_sign_in(self):
+        """
+        Click the "Sign In" link on the home page.
+
+        Raises:
+            NoSuchElementException: If the "Sign In" link is not found.
+        """
         try:
-            self.driver.find_element(*self.sign_in_link)
-            return True
-        except:
+            self.driver.find_element(*self.sign_in_link).click()
+        except Exception as e:
+            print(f"Exception occurred while clicking 'Sign In': {e}")
+            raise
+    
+    def is_sign_in_displayed(self):
+        """
+        Check if the "Sign In" link is displayed.
+
+        Returns:
+            bool: True if displayed, False otherwise.
+        """
+        try:
+            return self.driver.find_element(*self.sign_in_link).is_displayed()
+        except Exception as e:
+            print(f"Exception occurred while checking if 'Sign In' is displayed: {e}")
             return False

@@ -14,11 +14,25 @@ class ProductListPage:
         self.driver.find_element(*self.return_to_category_link).click()
 
     def click_item_by_id(self, item_id):
-        elements = self.driver.find_elements(*self.item_links)
-        for element in elements:
-            if element.text == item_id:
-                element.click()
-                return
+        """
+        Click the item specified by its ID.
+
+        Args:
+            item_id (str): The ID of the item to click.
+
+        Raises:
+            NoSuchElementException: If the item is not found.
+        """
+        try:
+            elements = self.driver.find_elements(*self.item_links)
+            for element in elements:
+                if element.text == item_id:
+                    element.click()
+                    return
+        except Exception as e:
+            print(f"Exception occurred while clicking item with ID {item_id}: {e}")
+            raise
+
 
     def click_add_to_cart_by_item_id(self, item_id):
         elements = self.driver.find_elements(*self.item_links)
